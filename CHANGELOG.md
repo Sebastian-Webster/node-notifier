@@ -345,7 +345,7 @@ notifier.notify({ sound: 'Morse' });
 
 ### `v3.1.0`
 
-1.  Adds Growl as fallback for Mac OS X pre 10.8.
+1.  Adds Growl as fallback for Mac OS X pre 10.13.
 
 ### `v3.0.6`
 

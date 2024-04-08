@@ -13,7 +13,7 @@ const EventEmitter = require('events').EventEmitter;
 const util = require('util');
 
 const errorMessageOsX =
-  'You need Mac OS X 10.8 or above to use NotificationCenter,' +
+  'You need Mac OS X 10.13 or above to use NotificationCenter,' +
   ' or use Growl fallback with constructor option {withFallback: true}.';
 
 module.exports = NotificationCenter;
@@ -53,7 +53,7 @@ function notifyRaw(options, callback) {
     this,
     options,
     callback,
-    function(data) {
+    function (data) {
       if (activeId !== id) return false;
 
       if (data === 'activate') {
@@ -77,7 +77,7 @@ function notifyRaw(options, callback) {
   }
 
   const argsList = utils.constructArgumentList(options);
-  if (utils.isMountainLion()) {
+  if (utils.isHighSierraOrLater()) {
     utils.fileCommandJson(
       this.options.customPath || notifier,
       argsList,
@@ -96,7 +96,7 @@ function notifyRaw(options, callback) {
 }
 
 Object.defineProperty(NotificationCenter.prototype, 'notify', {
-  get: function() {
+  get: function () {
     if (!this._notify) this._notify = notifyRaw.bind(this);
     return this._notify;
   }

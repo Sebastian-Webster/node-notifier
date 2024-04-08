@@ -8,20 +8,20 @@ const testUtils = require('./_test-utils');
 
 let notifier = null;
 const originalUtils = utils.fileCommandJson;
-const originalMacVersion = utils.isMountainLion;
+const originalMacVersion = utils.isHighSierraOrLater;
 const originalType = os.type;
 
 describe('Mac fallback', function () {
-  const original = utils.isMountainLion;
+  const original = utils.isHighSierraOrLater;
   const originalMac = utils.isMac;
 
   afterEach(function () {
-    utils.isMountainLion = original;
+    utils.isHighSierraOrLater = original;
     utils.isMac = originalMac;
   });
 
-  it('should default to Growl notification if older Mac OSX than 10.8', function (done) {
-    utils.isMountainLion = function () {
+  it('should default to Growl notification if older Mac OSX than 10.13', function (done) {
+    utils.isHighSierraOrLater = function () {
       return false;
     };
     utils.isMac = function () {
@@ -35,7 +35,7 @@ describe('Mac fallback', function () {
   });
 
   it('should not fallback to Growl notification if withFallback is false', function (done) {
-    utils.isMountainLion = function () {
+    utils.isHighSierraOrLater = function () {
       return false;
     };
     utils.isMac = function () {
@@ -56,7 +56,7 @@ describe('terminal-notifier', function () {
       return 'Darwin';
     };
 
-    utils.isMountainLion = function () {
+    utils.isHighSierraOrLater = function () {
       return true;
     };
   });
@@ -67,7 +67,7 @@ describe('terminal-notifier', function () {
 
   afterEach(function () {
     os.type = originalType;
-    utils.isMountainLion = originalMacVersion;
+    utils.isHighSierraOrLater = originalMacVersion;
   });
 
   // Simulate async operation, move to end of message queue.

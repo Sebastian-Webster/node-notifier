@@ -34,7 +34,7 @@ notifier.notify({
 
 ## Requirements
 
-- **macOS**: >= 10.8 for native notifications, or Growl if earlier.
+- **macOS**: >= 10.13 for native notifications, or Growl if earlier.
 - **Linux**: `notify-osd` or `libnotify-bin` installed (Ubuntu should have this by default)
 - **Windows**: >= 8, or task bar balloons for Windows < 8. Growl as fallback. Growl takes precedence over Windows balloons.
 - **General Fallback**: Growl
@@ -134,7 +134,7 @@ new nn.Growl(options).notify(options);
 
 Same usage and parameter setup as [**`terminal-notifier`**](https://github.com/julienXX/terminal-notifier).
 
-Native Notification Center requires macOS version 10.8 or higher. If you have
+Native Notification Center requires macOS version 10.13 or higher. If you have
 an earlier version, Growl will be the fallback. If Growl isn't installed, an
 error will be returned in the callback.
 
@@ -158,7 +158,7 @@ but they aren't documented.
 const NotificationCenter = require('node-notifier').NotificationCenter;
 
 var notifier = new NotificationCenter({
-  withFallback: false, // Use Growl Fallback if <= 10.8
+  withFallback: false, // Use Growl Fallback if <= 10.13
   customPath: undefined // Relative/Absolute path to binary if you want to use your own fork of terminal-notifier
 });
 
